@@ -56,6 +56,8 @@ public class MainService
 			System.out.println("Sorted array: " + Arrays.toString(arraySort(mas)));
 			System.out.println("Max value: " + getMax(mas));
 			System.out.println("Min value: " + getMin(mas));
+			double[][] arr2D = generateMatrix(4);
+			System.out.println(Arrays.deepToString(arr2D));
 		}
 		
 
@@ -162,5 +164,28 @@ public class MainService
 		return array;
 	}
 	
+	private static double[][] generateMatrix(int N) throws Exception
+	{
+		if(N <= 0) throw new Exception("Nevar izveidot masivu, kura garums ir negativs");
+	
+	
+	double[][] array = new double[N][N];
+	Random rand = new Random();
+	
+	
+	for(int i = 0; i < array.length; i ++)
+	{
+		for(int j = 0; j < array.length; j++) 
+		{
+			array[i][j] = rand.nextDouble();
+		}
+	}
+	
+	return array;
+	}
+//	double getProduct(double[][] matrix, int i, int j)
+//	{
+//		
+//	}
 	
 }
