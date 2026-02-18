@@ -52,13 +52,16 @@ public class MainService
 		{
 			double[] mas = generateArray(10, 3, 10);
 			System.out.println(Arrays.toString(mas));
-			System.out.println(getMean(mas));
-			System.out.println(arraySort(mas));
+			System.out.println("Avarage value: " + getMean(mas));
+			System.out.println("Sorted array: " + Arrays.toString(arraySort(mas)));
+			System.out.println("Max value: " + getMax(mas));
+			System.out.println("Min value: " + getMin(mas));
 		}
 		
 
 		catch (Exception e)
 		{
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}	
 
@@ -67,9 +70,7 @@ public class MainService
 	}
 	
 	
-	
-	
-	
+
 	
 	
 	// Ja main ir citas funkcijas, tās visticamāk būs static 
@@ -131,27 +132,33 @@ public class MainService
 		return meanValue;
 	}
 	
-//	private static double getMin(double[] array) throws Exception
-//	{
-//		
-//	}
-//	
-//	private static double getMax(double[] array) throws Exception
-//	{
-//		
-//	}
-//	
+	private static double getMin(double[] array) throws Exception
+	{
+		double[] result = arraySort(array);
+		return result[0];
+	}
+	
+	private static double getMax(double[] array) throws Exception
+	{
+		double[] result = arraySort(array);
+		return result[result.length-1];
+	}
+	
 	private static double[] arraySort(double[] array) throws Exception
 	{
 		if(array == null) throw new Exception("nevar kartot, jo masiva nav elementu");
 		if(array.length == 0) throw new Exception("nevar kartot, jo masiva nav elementu");
 		
 		for(int i = 0; i < array.length; i++)
+		{
 			for(int j = 0; j < array.length - 1; j++)
-				if(array[j] > array[j+1]) array[j] = array[j+1];
-			
-		
-		
+				if(array[i] < array[j]) 
+				{
+					double tempA = array[j];
+					array[j] = array[i];
+					array[i] = tempA;
+				}
+		}
 		return array;
 	}
 	
